@@ -1,7 +1,6 @@
 package use_case;
 
 import data_access.UserSignupDataAccessInterface;
-import entity.PasswordValidator;
 import entity.User;
 import entity.UserFactory;
 
@@ -30,8 +29,8 @@ public class SignupInteractor implements SignupInputBoundary {
             User user = userFactory.create(signupInputData.getUsername(), signupInputData.getPassword());
 
             LocalDateTime now = LocalDateTime.now();
-            SignupDsData userDsModel = new SignupDsData(user.getName(), user.getPassword(), now);
-            userDsGateway.save(userDsModel);
+            SignupDsData userSignupDsModel = new SignupDsData(user.getName(), user.getPassword(), now);
+            userDsGateway.save(userSignupDsModel);
 
             SignupOutputData signupOutputData = new SignupOutputData(user.getName(), now.toString(), false);
             userPresenter.prepareSuccessView(signupOutputData);
