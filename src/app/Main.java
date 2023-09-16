@@ -1,3 +1,5 @@
+package app;
+
 import interface_adapter.LoginViewModel;
 import interface_adapter.ViewManagerModel;
 import use_case_factories.SignupUseCaseFactory;
@@ -13,7 +15,7 @@ public class Main {
         // Build the main program window, the main panel containing the
         // various cards, and the layout, and stitch them together.
         JFrame application = new JFrame("Login Example");
-        application.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        application.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         CardLayout cardLayout = new CardLayout();
         JPanel views = new JPanel(cardLayout);
@@ -32,7 +34,6 @@ public class Main {
 
         viewManagerModel.setActiveView(signupView.viewName);
         cardLayout.show(views, viewManagerModel.getActiveView());
-//        cardLayout.show(views, LoginView.VIEW_NAME);
         application.pack();
         application.setVisible(true);
     }

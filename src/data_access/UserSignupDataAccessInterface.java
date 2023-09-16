@@ -1,9 +1,9 @@
 package data_access;
 
-import use_case.SignupDsData;
+import entity.User;
 
 public interface UserSignupDataAccessInterface {
     boolean existsByName(String identifier);
 
-    void save(SignupDsData requestModel);
+    void save(User user);
 }

@@ -3,8 +3,6 @@ package use_case_factories;
 import data_access.FileUserDataAccessObject;
 import data_access.UserSignupDataAccessInterface;
 import entity.CommonUserFactory;
-import entity.PasswordValidator;
-import entity.PasswordValidatorService;
 import entity.UserFactory;
 import interface_adapter.*;
 import use_case.SignupInputBoundary;
@@ -16,6 +14,10 @@ import javax.swing.*;
 import java.io.IOException;
 
 public class SignupUseCaseFactory {
+
+    /** Prevent instantiation. */
+    private SignupUseCaseFactory() {}
+
     public static SignupView create(ViewManagerModel viewManagerModel, LoginViewModel loginViewModel) {
         // The data for the views, such as username and password. This
         // will be changed by a presenter object that is reporting the
@@ -34,7 +36,7 @@ public class SignupUseCaseFactory {
     }
 
     private static SignupController createUserSignupUseCase(ViewManagerModel viewManagerModel, SignupViewModel signupViewModel, LoginViewModel loginViewModel) throws IOException {
-        UserSignupDataAccessInterface userDataAccessObject = new FileUserDataAccessObject("./users.csv");
+        UserSignupDataAccessInterface userDataAccessObject = new FileUserDataAccessObject("./users.csv", new CommonUserFactory());
         SignupOutputBoundary signupOutputBoundary = new SignupPresenter(viewManagerModel, signupViewModel, loginViewModel);
         UserFactory userFactory = new CommonUserFactory();
         SignupInputBoundary userSignupInteractor = new SignupInteractor(
