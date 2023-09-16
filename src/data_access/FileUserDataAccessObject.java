@@ -51,10 +51,6 @@ public class FileUserDataAccessObject implements UserSignupDataAccessInterface {
         }
     }
 
-    /**
-     * Add requestModel to storage.
-     * @param user the user information to save.
-     */
     @Override
     public void save(User user) {
         accounts.put(user.getName(), user);
