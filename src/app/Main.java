@@ -2,7 +2,6 @@ package app;
 
 import interface_adapter.LoginViewModel;
 import interface_adapter.ViewManagerModel;
-import use_case_factories.SignupUseCaseFactory;
 import view.LoginView;
 import view.SignupView;
 import view.ViewManager;

@@ -1,4 +1,4 @@
-package use_case_factories;
+package app;
 
 import data_access.FileUserDataAccessObject;
 import data_access.UserSignupDataAccessInterface;
