@@ -143,7 +143,7 @@ specifying the operations it needs to save and retrieve data. The DAO class
 implements this interface.
 
 Remember that the main program injects the `DAO` into the `UseCaseInteractor`.
-To swhith how you're persisting data, you would write a new `DAO` class that also
+To change how you're persisting data, you would write a new `DAO` class that also
 implements the `DataAccessInterface`, and then change the main program so that
 it injects that `DAO` instead.
 
