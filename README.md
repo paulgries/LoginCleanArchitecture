@@ -5,8 +5,8 @@
 This is an example of a Clean Architecture implementation.
 
 We keep showing you the Clean Architecture picture, the green, pink, yellow, and
-white picture with all the boxes and arrow. We will call this image the /"CA
-Engine"/.
+white picture with all the boxes and arrow. We will call this image the _"CA
+Engine"_.
 
 Pro tip: as you read this document, you'll want to look at the CA Engine a lot.
 Pull it up on your phone if you don't have an external monitor. Or arrange your
