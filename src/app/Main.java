@@ -43,7 +43,7 @@ public class Main {
         views.add(loginView, loginView.viewName);
 
         viewManagerModel.setActiveView(signupView.viewName);
-        cardLayout.show(views, viewManagerModel.getActiveView());
+        viewManagerModel.firePropertyChanged();
 
         application.pack();
         application.setVisible(true);
