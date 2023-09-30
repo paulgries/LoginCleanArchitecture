@@ -18,14 +18,9 @@ public class SignupUseCaseFactory {
     /** Prevent instantiation. */
     private SignupUseCaseFactory() {}
 
-    public static SignupView create(ViewManagerModel viewManagerModel, LoginViewModel loginViewModel) {
-        // The data for the views, such as username and password. This
-        // will be changed by a presenter object that is reporting the
-        // results from the use case. This is an observable, and will
-        // be observed by the layout manager.
+    public static SignupView create(ViewManagerModel viewManagerModel, LoginViewModel loginViewModel, SignupViewModel signupViewModel) {
 
         try {
-            SignupViewModel signupViewModel = new SignupViewModel();
             SignupController signupController = createUserSignupUseCase(viewManagerModel, signupViewModel, loginViewModel);
             return new SignupView(signupController, signupViewModel);
         } catch (IOException e) {
@@ -37,8 +32,12 @@ public class SignupUseCaseFactory {
 
     private static SignupController createUserSignupUseCase(ViewManagerModel viewManagerModel, SignupViewModel signupViewModel, LoginViewModel loginViewModel) throws IOException {
         UserSignupDataAccessInterface userDataAccessObject = new FileUserDataAccessObject("./users.csv", new CommonUserFactory());
+
+        // Notice how we pass this method's parameters to the Presenter.
         SignupOutputBoundary signupOutputBoundary = new SignupPresenter(viewManagerModel, signupViewModel, loginViewModel);
+
         UserFactory userFactory = new CommonUserFactory();
+
         SignupInputBoundary userSignupInteractor = new SignupInteractor(
                 userDataAccessObject, signupOutputBoundary, userFactory);
 
