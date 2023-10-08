@@ -52,9 +52,14 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
                 new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
                         if (evt.getSource().equals(signUp)) {
-                            signupController.execute(usernameInputField.getText(),
-                                    String.valueOf(passwordInputField.getPassword()),
-                                    String.valueOf(repeatPasswordInputField.getPassword()));
+                            // start testing
+                            SignupState currState = signupViewModel.getState();
+
+
+                            // end testing
+                            signupController.execute(currState.getUsername(),
+                                    String.valueOf(currState.getPassword()),
+                                    String.valueOf(currState.getRepeatPassword()));
                         }
                     }
                 }
@@ -82,6 +87,47 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
                     public void keyReleased(KeyEvent e) {
                     }
                 });
+        // start percy's experiment
+        passwordInputField.addKeyListener(
+                new KeyListener() {
+                    @Override
+                    public void keyTyped(KeyEvent e) {
+                        // e.getKeyChar returns the key that triggers the action listener
+                        // call our existing data to add that in
+                        SignupState currentState = signupViewModel.getState();
+                        currentState.setPassword(passwordInputField.getText() + e.getKeyChar());
+                        signupViewModel.setState(currentState);
+                    }
+
+                    @Override
+                    public void keyPressed(KeyEvent e) {
+                    }
+
+                    @Override
+                    public void keyReleased(KeyEvent e) {
+                    }
+                });
+
+        repeatPasswordInputField.addKeyListener(
+                new KeyListener() {
+                    @Override
+                    public void keyTyped(KeyEvent e) {
+                        // e.getKeyChar returns the key that triggers the action listener
+                        // call our existing data to add that in
+                        SignupState currentState = signupViewModel.getState();
+                        currentState.setRepeatPassword(repeatPasswordInputField.getText() + e.getKeyChar());
+                        signupViewModel.setState(currentState);
+                    }
+
+                    @Override
+                    public void keyPressed(KeyEvent e) {
+                    }
+
+                    @Override
+                    public void keyReleased(KeyEvent e) {
+                    }
+                });
+        // end percy's experiment
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         this.add(title);
